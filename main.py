@@ -1,9 +1,11 @@
+import streamlit as st
 import urllib3
 from bs4 import BeautifulSoup
 import requests
 
 url = "http://usjinfo.com/attrWait.php?attr_id=2"
 
+st.title('待ち時間アプリ')
 http = urllib3.PoolManager()
 response = http.request("GET",url)
 
