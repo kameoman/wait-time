@@ -2,6 +2,7 @@ import streamlit as st
 import urllib3
 from bs4 import BeautifulSoup
 import requests
+from PIL import Image
 
 st.title('待ち時間アプリ')
 if st.checkbox("ディズニーランド待ち時間"):
@@ -22,6 +23,7 @@ if st.checkbox("ディズニーランド待ち時間"):
 
 if st.checkbox("USJ待ち時間"):
   if st.checkbox("ジュラシックパーク待ち時間"):
+    img = Image.open("waittime\image\usj-jurassic-park-the-ride-logo.png")
     url = "http://usjinfo.com/attrWait.php?attr_id=2"
     http = urllib3.PoolManager()
     response = http.request("GET",url)
