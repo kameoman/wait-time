@@ -13,17 +13,23 @@ if st.checkbox("ディズニーランド待ち時間"):
       data = BeautifulSoup(response.data, "lxml")
       data.find_all("div", attrs={"class": "info-data-value"})
       w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
-      w_time_int = int(w_time.split("分")[0])
-      w_time_str = str(w_time_int)
-      n_time = data.find_all("span", attrs={"class": "small"})[0].string
-      n_time1 = n_time[1:6]
-      st.write(n_time1+"時点")
-      st.write(w_time_str+"分")
+      if w_time == True:
+        w_time_int = int(w_time.split("分")[0])
+        w_time_str = str(w_time_int)
+        n_time = data.find_all("span", attrs={"class": "small"})[0].string
+        n_time1 = n_time[1:6]
+        st.write(n_time1+"時点")
+        st.write(w_time_str+"分")
+      else:
+        st.write("受付終了")
 
 
 if st.checkbox("USJ待ち時間"):
   if st.checkbox("ジュラシックパーク待ち時間"):
     img = Image.open("usj-jurassic-park-the-ride-logo.png")
+    img2 = Image.open("usj-jurassic-park-the-ride-long-necked-dinosaur-c.jpg")
+    # img3 = Image.open("usj-jurassic-park-the-ride-logo.png")
+    st.image(img)
     url = "http://usjinfo.com/attrWait.php?attr_id=2"
     http = urllib3.PoolManager()
     response = http.request("GET",url)
@@ -40,8 +46,12 @@ if st.checkbox("USJ待ち時間"):
     st.write(n_time)
     # st.write(w_time_int)
     st.write(w_time_str+"分")
+    st.image(img2)
 
   if st.checkbox("NEW アメージング・アドベンチャー・オブ・スパイダーマン(TM)・ザ・ライド 4K3D"):
+    img = Image.open("usj-the-amazing-adventures-of-spider-man-the-ride-logo.png")
+    img2 = Image.open("usj-the-amazing-adventures-of-spider-man-the-ride-water-c.jpg")
+    st.image(img)
     url = "http://usjinfo.com/attrWait.php?attr_id=18"
     http = urllib3.PoolManager()
     response = http.request("GET",url)
@@ -58,8 +68,12 @@ if st.checkbox("USJ待ち時間"):
     st.write(n_time)
     # st.write(w_time_int)
     st.write(w_time_str+"分")
+    st.image(img2)
 
   if st.checkbox("ハリウッド・ドリーム・ザ・ライド"):
+    img = Image.open("usj-hollywood-dream-the-ride-logo.png")
+    img2 = Image.open("usj-hollywood-dream-the-ride-first-drop-c.jpg")
+    st.image(img)
     url = "http://usjinfo.com/attrWait.php?attr_id=8"
     http = urllib3.PoolManager()
     response = http.request("GET",url)
@@ -76,3 +90,4 @@ if st.checkbox("USJ待ち時間"):
     st.write(n_time)
     # st.write(w_time_int)
     st.write(w_time_str+"分")
+    st.image(img2)
