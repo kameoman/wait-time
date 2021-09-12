@@ -23,7 +23,7 @@ if st.checkbox("ディズニーランド待ち時間"):
 
 if st.checkbox("USJ待ち時間"):
   if st.checkbox("ジュラシックパーク待ち時間"):
-    img = Image.open("waittime\image\usj-jurassic-park-the-ride-logo.png")
+    img = Image.open("usj-jurassic-park-the-ride-logo.png")
     url = "http://usjinfo.com/attrWait.php?attr_id=2"
     http = urllib3.PoolManager()
     response = http.request("GET",url)
