@@ -24,7 +24,20 @@ if st.checkbox("ディズニーランド待ち時間"):
         st.write(w_time_str+"分")
 
 
-if st.checkbox("USJ待ち時間"):
+if st.checkbox("USJ関連情報"):
+  url = "https://usjinfo.com/"
+  http = urllib3.PoolManager()
+  response = http.request("GET",url)
+  data = BeautifulSoup(response.data, "lxml")
+  w_time = data.find_all("div", attrs={"class": "business_hour"})
+  w_time_str = str(w_time)
+  open_time =w_time_str.split(">|<")[0]
+  open_time1 =open_time.split("\n")[2]
+  open_time2 =open_time.split("\n")[4]
+  today = data.find_all("h2")[1]
+  today = str(today)
+  st.write(today[4:36])
+  st.write("営業時間"+open_time1+"～"+open_time2)
   if st.checkbox("ジュラシックパーク待ち時間"):
     img = Image.open("usj-jurassic-park-the-ride-logo.png")
     img2 = Image.open("usj-jurassic-park-the-ride-long-necked-dinosaur-c.jpg")
