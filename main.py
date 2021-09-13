@@ -91,3 +91,23 @@ if st.checkbox("USJ待ち時間"):
     # st.write(w_time_int)
     st.write(w_time_str+"分")
     st.image(img2)
+
+  if st.checkbox("マリオカート ～クッパの挑戦状"):
+    img = Image.open("usj-mario-the-ride-logo.png.png")
+    img2 = Image.open("usj-mario-the-ride-ride.png")
+    st.image(img)
+    url = "https://usjinfo.com/wait/sp/attrWait.php?attr_id=28684"
+    http = urllib3.PoolManager()
+    response = http.request("GET",url)
+    data = BeautifulSoup(response.data, "lxml")
+    st.write("マリオカート ～クッパの挑戦状")
+    data.find_all("div", attrs={"class": "realtime_status"})
+    w_time = w_time = data.find_all("div", attrs={"data-role": "button"})[0].string
+    w_time_int = int(w_time.split("分")[0])
+    w_time_str = str(w_time_int)
+    nowtime = data.find_all("li", attrs={"data-role": "list-divider"})[0].string
+    n_time = (nowtime.split(">|<")[0])
+    st.write(n_time)
+    # st.write(w_time_int)
+    st.write(w_time_str+"分")
+    st.image(img2)
