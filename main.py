@@ -5,7 +5,82 @@ import requests
 from PIL import Image
 
 st.title('待ち時間アプリ')
-if st.checkbox("ディズニーランド待ち時間"):
+st.sidebar.write('テーマパーク一覧')
+
+if st.sidebar.checkbox("ディズニーランド待ち時間"):
+      expander1 = st.expander("ｽﾌﾟﾗｯｼｭ･ﾏｳﾝﾃﾝ待ち時間")
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=112&park=land"
+      http = urllib3.PoolManager()
+      response = http.request("GET",url)
+      data = BeautifulSoup(response.data, "lxml")
+      data.find_all("div", attrs={"class": "info-data-value"})
+      w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
+      if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
+        expander1.write(w_time)
+        # expander1 = st.expander("お問い合わせ")
+      else:
+        w_time_int = int(w_time.split("分")[0])
+        w_time_str = str(w_time_int)
+        n_time = data.find_all("span", attrs={"class": "small"})[0].string
+        n_time1 = n_time[1:6]
+        expander1.write(n_time1+"時点")
+        expander1.write(w_time_str+"分")
+
+      expander2 = st.expander("ﾋﾞｯｸﾞｻﾝﾀﾞｰ･ﾏｳﾝﾃﾝ")
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=110&park=land"
+      http = urllib3.PoolManager()
+      response = http.request("GET",url)
+      data = BeautifulSoup(response.data, "lxml")
+      data.find_all("div", attrs={"class": "info-data-value"})
+      w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
+      if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
+        expander2.write(w_time)
+        # expander1 = st.expander("お問い合わせ")
+      else:
+        w_time_int = int(w_time.split("分")[0])
+        w_time_str = str(w_time_int)
+        n_time = data.find_all("span", attrs={"class": "small"})[0].string
+        n_time1 = n_time[1:6]
+        expander2.write(n_time1+"時点")
+        expander2.write(w_time_str+"分")
+
+      expander3 = st.expander("ﾐｯｷｰの家とﾐｰﾄ･ﾐｯｷｰ")
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=126&park=land"
+      http = urllib3.PoolManager()
+      response = http.request("GET",url)
+      data = BeautifulSoup(response.data, "lxml")
+      data.find_all("div", attrs={"class": "info-data-value"})
+      w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
+      if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
+        expander3.write(w_time)
+        # expander1 = st.expander("お問い合わせ")
+      else:
+        w_time_int = int(w_time.split("分")[0])
+        w_time_str = str(w_time_int)
+        n_time = data.find_all("span", attrs={"class": "small"})[0].string
+        n_time1 = n_time[1:6]
+        expander3.write(n_time1+"時点")
+        expander3.write(w_time_str+"分")
+        
+      expander4 = st.expander("ﾋﾟｰﾀｰﾊﾟﾝ空の旅")
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=126&park=land"
+      http = urllib3.PoolManager()
+      response = http.request("GET",url)
+      data = BeautifulSoup(response.data, "lxml")
+      data.find_all("div", attrs={"class": "info-data-value"})
+      w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
+      if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
+        expander4.write(w_time)
+        # expander1 = st.expander("お問い合わせ")
+      else:
+        w_time_int = int(w_time.split("分")[0])
+        w_time_str = str(w_time_int)
+        n_time = data.find_all("span", attrs={"class": "small"})[0].string
+        n_time1 = n_time[1:6]
+        expander4.write(n_time1+"時点")
+        expander4.write(w_time_str+"分")
+
+if st.sidebar.checkbox("ディズニーシー待ち時間"):
     if st.checkbox("ｽﾌﾟﾗｯｼｭ･ﾏｳﾝﾃﾝ待ち時間"):
       url = "https://tokyodisneyresort.info/attrWait.php?attr_id=112&park=land"
       http = urllib3.PoolManager()
@@ -24,7 +99,7 @@ if st.checkbox("ディズニーランド待ち時間"):
         st.write(w_time_str+"分")
 
 
-if st.checkbox("USJ関連情報"):
+if st.sidebar.checkbox("USJ関連情報"):
   url = "https://usjinfo.com/"
   http = urllib3.PoolManager()
   response = http.request("GET",url)
