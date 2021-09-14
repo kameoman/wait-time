@@ -6,9 +6,9 @@ from PIL import Image
 
 st.title('待ち時間アプリ')
 left_column,center_column,right_column = st.columns(3)
-button1 = left_column.button("TDL")
-button2 = center_column.button("TDS")
-button3 = right_column.button("USJ")
+button1 = left_column.checkbox("TDL")
+button2 = center_column.checkbox("TDS")
+button3 = right_column.checkbox("USJ")
 
 if button1:
       expander1 = st.expander("ｽﾌﾟﾗｯｼｭ･ﾏｳﾝﾃﾝ待ち時間")
