@@ -11,7 +11,7 @@ button2 = center_column.checkbox("TDS")
 button3 = right_column.checkbox("USJ")
 
 if button1:
-      expander1 = st.expander("ｽﾌﾟﾗｯｼｭ･ﾏｳﾝﾃﾝ待ち時間")
+    if st.checkbox("ｽﾌﾟﾗｯｼｭ･ﾏｳﾝﾃﾝ待ち時間"):
       url = "https://tokyodisneyresort.info/attrWait.php?attr_id=112&park=land"
       http = urllib3.PoolManager()
       response = http.request("GET",url)
@@ -19,17 +19,17 @@ if button1:
       data.find_all("div", attrs={"class": "info-data-value"})
       w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
       if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
-        expander1.write(w_time)
-        # expander1 = st.expander("お問い合わせ")
+        st.write(w_time)
+        # checkbox1 = st.checkbox("お問い合わせ")
       else:
         w_time_int = int(w_time.split("分")[0])
         w_time_str = str(w_time_int)
         n_time = data.find_all("span", attrs={"class": "small"})[0].string
         n_time1 = n_time[1:6]
-        expander1.write(n_time1+"時点")
-        expander1.write(w_time_str+"分")
+        st.write(n_time1+"時点")
+        st.write(w_time_str+"分")
 
-      expander2 = st.expander("ﾋﾞｯｸﾞｻﾝﾀﾞｰ･ﾏｳﾝﾃﾝ")
+    if st.checkbox("ﾋﾞｯｸﾞｻﾝﾀﾞｰ･ﾏｳﾝﾃﾝ"):
       url = "https://tokyodisneyresort.info/attrWait.php?attr_id=110&park=land"
       http = urllib3.PoolManager()
       response = http.request("GET",url)
@@ -37,17 +37,17 @@ if button1:
       data.find_all("div", attrs={"class": "info-data-value"})
       w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
       if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
-        expander2.write(w_time)
+        st.write(w_time)
         # expander1 = st.expander("お問い合わせ")
       else:
         w_time_int = int(w_time.split("分")[0])
         w_time_str = str(w_time_int)
         n_time = data.find_all("span", attrs={"class": "small"})[0].string
         n_time1 = n_time[1:6]
-        expander2.write(n_time1+"時点")
-        expander2.write(w_time_str+"分")
+        st.write(n_time1+"時点")
+        st.write(w_time_str+"分")
 
-      expander3 = st.expander("ﾐｯｷｰの家とﾐｰﾄ･ﾐｯｷｰ")
+    if st.checkbox("ﾐｯｷｰの家とﾐｰﾄ･ﾐｯｷｰ"):
       url = "https://tokyodisneyresort.info/attrWait.php?attr_id=126&park=land"
       http = urllib3.PoolManager()
       response = http.request("GET",url)
@@ -55,17 +55,17 @@ if button1:
       data.find_all("div", attrs={"class": "info-data-value"})
       w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
       if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
-        expander3.write(w_time)
+        st.write(w_time)
         # expander1 = st.expander("お問い合わせ")
       else:
         w_time_int = int(w_time.split("分")[0])
         w_time_str = str(w_time_int)
         n_time = data.find_all("span", attrs={"class": "small"})[0].string
         n_time1 = n_time[1:6]
-        expander3.write(n_time1+"時点")
-        expander3.write(w_time_str+"分")
+        st.write(n_time1+"時点")
+        st.write(w_time_str+"分")
         
-      expander4 = st.expander("ﾋﾟｰﾀｰﾊﾟﾝ空の旅")
+    if st.checkbox("ﾋﾟｰﾀｰﾊﾟﾝ空の旅"):
       url = "https://tokyodisneyresort.info/attrWait.php?attr_id=114&park=land"
       http = urllib3.PoolManager()
       response = http.request("GET",url)
@@ -73,16 +73,16 @@ if button1:
       data.find_all("div", attrs={"class": "info-data-value"})
       w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
       if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
-        expander4.write(w_time)
+        st.write(w_time)
       else:
         w_time_int = int(w_time.split("分")[0])
         w_time_str = str(w_time_int)
         n_time = data.find_all("span", attrs={"class": "small"})[0].string
         n_time1 = n_time[1:6]
-        expander4.write(n_time1+"時点")
-        expander4.write(w_time_str+"分")
+        st.write(n_time1+"時点")
+        st.write(w_time_str+"分")
 
-      expander5 = st.expander("ﾌﾟｰさんのﾊﾆｰﾊﾝﾄ")
+      st.checkbox("ﾌﾟｰさんのﾊﾆｰﾊﾝﾄ")
       url = "https://tokyodisneyresort.info/attrWait.php?attr_id=123&park=land"
       http = urllib3.PoolManager()
       response = http.request("GET",url)
@@ -90,16 +90,16 @@ if button1:
       data.find_all("div", attrs={"class": "info-data-value"})
       w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
       if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
-        expander5.write(w_time)
+        st.write(w_time)
       else:
         w_time_int = int(w_time.split("分")[0])
         w_time_str = str(w_time_int)
         n_time = data.find_all("span", attrs={"class": "small"})[0].string
         n_time1 = n_time[1:6]
-        expander5.write(n_time1+"時点")
-        expander5.write(w_time_str+"分")
+        st.write(n_time1+"時点")
+        st.write(w_time_str+"分")
 
-      expander6 = st.expander("ﾊﾞｽﾞ･ﾗｲﾄｲﾔｰのｱｽﾄﾛﾌﾞﾗｽﾀｰ")
+    if st.checkbox("ﾊﾞｽﾞ･ﾗｲﾄｲﾔｰのｱｽﾄﾛﾌﾞﾗｽﾀｰ"):
       url = "https://tokyodisneyresort.info/attrWait.php?attr_id=134&park=land"
       http = urllib3.PoolManager()
       response = http.request("GET",url)
@@ -107,16 +107,16 @@ if button1:
       data.find_all("div", attrs={"class": "info-data-value"})
       w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
       if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
-        expander6.write(w_time)
+        st.write(w_time)
       else:
         w_time_int = int(w_time.split("分")[0])
         w_time_str = str(w_time_int)
         n_time = data.find_all("span", attrs={"class": "small"})[0].string
         n_time1 = n_time[1:6]
-        expander6.write(n_time1+"時点")
-        expander6.write(w_time_str+"分")
+        st.write(n_time1+"時点")
+        st.write(w_time_str+"分")
 
-      expander7 = st.expander("ｽﾍﾟｰｽ･ﾏｳﾝﾃﾝ")
+    if st.checkbox("ｽﾍﾟｰｽ･ﾏｳﾝﾃﾝ"):
       url = "https://tokyodisneyresort.info/attrWait.php?attr_id=133&park=land"
       http = urllib3.PoolManager()
       response = http.request("GET",url)
@@ -124,18 +124,17 @@ if button1:
       data.find_all("div", attrs={"class": "info-data-value"})
       w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
       if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
-        expander7.write(w_time)
+        st.write(w_time)
       else:
         w_time_int = int(w_time.split("分")[0])
         w_time_str = str(w_time_int)
         n_time = data.find_all("span", attrs={"class": "small"})[0].string
         n_time1 = n_time[1:6]
-        expander7.write(n_time1+"時点")
-        expander7.write(w_time_str+"分")
+        st.write(n_time1+"時点")
+        st.write(w_time_str+"分")
 
 if button2:
     if st.checkbox("ｽﾌﾟﾗｯｼｭ･ﾏｳﾝﾃﾝ待ち時間"):
-      st.write("kame")
       url = "https://tokyodisneyresort.info/attrWait.php?attr_id=112&park=land"
       http = urllib3.PoolManager()
       response = http.request("GET",url)
