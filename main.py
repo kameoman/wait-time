@@ -166,6 +166,22 @@ if button2:
         n_time1 = n_time[1:6]
         st.write(n_time1+"時点")
         st.write(w_time_str+"分")
+    if st.checkbox("ﾄｲ･ｽﾄｰﾘｰ･ﾏﾆｱ！の待ち時間"):
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=173&park=sea"
+      http = urllib3.PoolManager()
+      response = http.request("GET",url)
+      data = BeautifulSoup(response.data, "lxml")
+      data.find_all("div", attrs={"class": "info-data-value"})
+      w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
+      if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
+        st.write (w_time)
+      else:
+        w_time_int = int(w_time.split("分")[0])
+        w_time_str = str(w_time_int)
+        n_time = data.find_all("span", attrs={"class": "small"})[0].string
+        n_time1 = n_time[1:6]
+        st.write(n_time1+"時点")
+        st.write(w_time_str+"分")
 
 
 if button3:
