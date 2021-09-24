@@ -26,72 +26,7 @@ def time_extra_tdl():
         st.write(n_time1+"時点")
         st.write(w_time_str+"分")
 
-
-if button1:
-    if st.checkbox("スプラッシュ・マウンテン"):
-      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=112&park=land"
-      time_extra_tdl()
-
-
-    if st.checkbox("ﾋﾞｯｸﾞｻﾝﾀﾞｰ･ﾏｳﾝﾃﾝ"):
-      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=110&park=land"
-      time_extra_tdl()
-
-    if st.checkbox("ﾐｯｷｰの家とﾐｰﾄ･ﾐｯｷｰ"):
-      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=126&park=land"
-      time_extra_tdl()
-
-    if st.checkbox("ﾋﾟｰﾀｰﾊﾟﾝ空の旅"):
-      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=114&park=land"
-      time_extra_tdl()
-
-    if st.checkbox("ﾌﾟｰさんのﾊﾆｰﾊﾝﾄ"):
-      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=123&park=land"
-      time_extra_tdl()
-
-    if st.checkbox("ﾊﾞｽﾞ･ﾗｲﾄｲﾔｰのｱｽﾄﾛﾌﾞﾗｽﾀｰ"):
-      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=134&park=land"
-      time_extra_tdl()
-
-    if st.checkbox("ｽﾍﾟｰｽ･ﾏｳﾝﾃﾝ"):
-      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=133&park=land"
-      time_extra_tdl()
-
-if button2:
-    if st.checkbox("ｿｱﾘﾝ：ﾌｧﾝﾀｽﾃｨｯｸ･ﾌﾗｲﾄ待ち時間"):
-      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=405&park=sea"
-      http = urllib3.PoolManager()
-      response = http.request("GET",url)
-      data = BeautifulSoup(response.data, "lxml")
-      data.find_all("div", attrs={"class": "info-data-value"})
-      w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
-      if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
-        st.write (w_time)
-      else:
-        w_time_int = int(w_time.split("分")[0])
-        w_time_str = str(w_time_int)
-        n_time = data.find_all("span", attrs={"class": "small"})[0].string
-        n_time1 = n_time[1:6]
-        st.write(n_time1+"時点")
-        st.write(w_time_str+"分")
-    if st.checkbox("ﾄｲ･ｽﾄｰﾘｰ･ﾏﾆｱ！の待ち時間"):
-      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=173&park=sea"
-      http = urllib3.PoolManager()
-      response = http.request("GET",url)
-      data = BeautifulSoup(response.data, "lxml")
-      data.find_all("div", attrs={"class": "info-data-value"})
-      w_time = data.find_all("div", attrs={"class": "info-data-value"})[0].string
-      if w_time ==  '\n\t\t\t\t\t\t\t受付終了\n\t\t\t\t\t':
-        st.write (w_time)
-      else:
-        w_time_int = int(w_time.split("分")[0])
-        w_time_str = str(w_time_int)
-        n_time = data.find_all("span", attrs={"class": "small"})[0].string
-        n_time1 = n_time[1:6]
-        st.write(n_time1+"時点")
-        st.write(w_time_str+"分")
-    if st.checkbox("ﾄｲ･ｽﾄｰﾘｰ･ﾏﾆｱ！の待ち時間"):
-      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=173&park=sea"
+def time_extra_tds():
       http = urllib3.PoolManager()
       response = http.request("GET",url)
       data = BeautifulSoup(response.data, "lxml")
@@ -139,6 +74,47 @@ def time_extra_usj2():
     st.write(n_time)
     st.write(w_time_str+"分")
 
+# TDL
+if button1:
+    if st.checkbox("スプラッシュ・マウンテン"):
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=112&park=land"
+      time_extra_tdl()
+
+
+    if st.checkbox("ﾋﾞｯｸﾞｻﾝﾀﾞｰ･ﾏｳﾝﾃﾝ"):
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=110&park=land"
+      time_extra_tdl()
+
+    if st.checkbox("ﾐｯｷｰの家とﾐｰﾄ･ﾐｯｷｰ"):
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=126&park=land"
+      time_extra_tdl()
+
+    if st.checkbox("ﾋﾟｰﾀｰﾊﾟﾝ空の旅"):
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=114&park=land"
+      time_extra_tdl()
+
+    if st.checkbox("ﾌﾟｰさんのﾊﾆｰﾊﾝﾄ"):
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=123&park=land"
+      time_extra_tdl()
+
+    if st.checkbox("ﾊﾞｽﾞ･ﾗｲﾄｲﾔｰのｱｽﾄﾛﾌﾞﾗｽﾀｰ"):
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=134&park=land"
+      time_extra_tdl()
+
+    if st.checkbox("ｽﾍﾟｰｽ･ﾏｳﾝﾃﾝ"):
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=133&park=land"
+      time_extra_tdl()
+
+# TDS
+if button2:
+    if st.checkbox("ｿｱﾘﾝ：ﾌｧﾝﾀｽﾃｨｯｸ･ﾌﾗｲﾄ待ち時間"):
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=405&park=sea"
+      time_extra_tds()
+    if st.checkbox("ﾄｲ･ｽﾄｰﾘｰ･ﾏﾆｱ！の待ち時間"):
+      url = "https://tokyodisneyresort.info/attrWait.php?attr_id=173&park=sea"
+      time_extra_tds()
+
+# USJ
 if button3:
   url = "https://usjinfo.com/"
   http = urllib3.PoolManager()
