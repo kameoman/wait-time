@@ -10,6 +10,7 @@ button1 = left_column.checkbox("TDL")
 button2 = center_column.checkbox("TDS")
 button3 = right_column.checkbox("USJ")
 
+# TDLのアトラクション待ち時間抽出
 def time_extra_tdl():
       http = urllib3.PoolManager()
       response = http.request("GET",url)
@@ -26,6 +27,7 @@ def time_extra_tdl():
         st.write(n_time1+"時点")
         st.write(w_time_str+"分")
 
+# TDSのアトラクション待ち時間抽出
 def time_extra_tds():
       http = urllib3.PoolManager()
       response = http.request("GET",url)
@@ -41,6 +43,20 @@ def time_extra_tds():
         n_time1 = n_time[1:6]
         st.write(n_time1+"時点")
         st.write(w_time_str+"分")
+
+def business_hours_display():
+    http = urllib3.PoolManager()
+    response = http.request("GET",url)
+    data = BeautifulSoup(response.data, "lxml")
+    w_time = data.find_all("div", attrs={"class": "business_hour"})
+    w_time_str = str(w_time)
+    open_time =w_time_str.split(">|<")[0]
+    open_time1 =open_time.split("\n")[2]
+    open_time2 =open_time.split("\n")[4]
+    today = data.find_all("h2")[1]
+    today = str(today)
+    st.write(today[4:36])
+    st.write("営業時間"+open_time1+"～"+open_time2)
 
 # USJのアトラクション待ち時間抽出オブジェクト
 def time_extra_usj():
@@ -80,7 +96,6 @@ if button1:
       url = "https://tokyodisneyresort.info/attrWait.php?attr_id=112&park=land"
       time_extra_tdl()
 
-
     if st.checkbox("ﾋﾞｯｸﾞｻﾝﾀﾞｰ･ﾏｳﾝﾃﾝ"):
       url = "https://tokyodisneyresort.info/attrWait.php?attr_id=110&park=land"
       time_extra_tdl()
@@ -117,18 +132,8 @@ if button2:
 # USJ
 if button3:
   url = "https://usjinfo.com/"
-  http = urllib3.PoolManager()
-  response = http.request("GET",url)
-  data = BeautifulSoup(response.data, "lxml")
-  w_time = data.find_all("div", attrs={"class": "business_hour"})
-  w_time_str = str(w_time)
-  open_time =w_time_str.split(">|<")[0]
-  open_time1 =open_time.split("\n")[2]
-  open_time2 =open_time.split("\n")[4]
-  today = data.find_all("h2")[1]
-  today = str(today)
-  st.write(today[4:36])
-  st.write("営業時間"+open_time1+"～"+open_time2)
+  business_hours_display()
+
   if st.checkbox("ジュラシックパーク待ち時間"):
     url = "http://usjinfo.com/attrWait.php?attr_id=2"
     time_extra_usj()
