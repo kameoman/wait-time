@@ -201,6 +201,20 @@ def time_extra():
     st.write(n_time)
     st.write(w_time_str+"分")
 
+# USJのアトラクション待ち時間抽出(1つ目と異なる抽出条件が必要)
+def time_extra_usj2():
+    http = urllib3.PoolManager()
+    response = http.request("GET",url)
+    data = BeautifulSoup(response.data, "lxml")
+    data.find_all("div", attrs={"class": "realtime_status"})
+    w_time = w_time = data.find_all("div", attrs={"data-role": "button"})[0].string
+    w_time_int = int(w_time.split("分")[0])
+    w_time_str = str(w_time_int)
+    nowtime = data.find_all("li", attrs={"data-role": "list-divider"})[0].string
+    n_time = (nowtime.split(">|<")[0])
+    st.write(n_time)
+    st.write(w_time_str+"分")
+
 if button3:
   url = "https://usjinfo.com/"
   http = urllib3.PoolManager()
@@ -229,145 +243,44 @@ if button3:
 
   if st.checkbox("ハリウッド・ドリーム・ザ・ライド"):
     img = Image.open("usj-hollywood-dream-the-ride-logo.png")
-    img2 = Image.open("usj-hollywood-dream-the-ride-first-drop-c.jpg")
     st.image(img)
     url = "http://usjinfo.com/attrWait.php?attr_id=8"
-    http = urllib3.PoolManager()
-    response = http.request("GET",url)
-    data = BeautifulSoup(response.data, "lxml")
-    title = data.title.string
-    t_title = (title.split("|")[0])
-    st.write(t_title)
-    data.find_all("div", attrs={"class": "realtime_status"})
-    w_time = data.find_all("div", attrs={"class": "realtime_status"})[0].string
-    w_time_int = int(w_time.split("分")[0])
-    w_time_str = str(w_time_int)
-    nowtime = data.find_all("h2")[1].string
-    n_time = (nowtime.split(">|<")[0])
-    st.write(n_time)
-    # st.write(w_time_int)
-    st.write(w_time_str+"分")
-    st.image(img2)
+    time_extra()
 
   if st.checkbox("マリオカート ～クッパの挑戦状"):
     img = Image.open("usj-mario-the-ride-logo.png.png")
-    img2 = Image.open("usj-mario-the-ride-ride.png")
     st.image(img)
     url = "https://usjinfo.com/wait/sp/attrWait.php?attr_id=28684"
-    http = urllib3.PoolManager()
-    response = http.request("GET",url)
-    data = BeautifulSoup(response.data, "lxml")
-    data.find_all("div", attrs={"class": "realtime_status"})
-    w_time = w_time = data.find_all("div", attrs={"data-role": "button"})[0].string
-    w_time_int = int(w_time.split("分")[0])
-    w_time_str = str(w_time_int)
-    nowtime = data.find_all("li", attrs={"data-role": "list-divider"})[0].string
-    n_time = (nowtime.split(">|<")[0])
-    st.write(n_time)
-    # st.write(w_time_int)
-    st.write(w_time_str+"分")
-    st.image(img2)
+    time_extra_usj2()
+
   if st.checkbox("ザ・フライング・ダイナソー"):
     url = "https://usjinfo.com/wait/sp/attrWait.php?attr_id=58"
-    http = urllib3.PoolManager()
-    response = http.request("GET",url)
-    data = BeautifulSoup(response.data, "lxml")
-    data.find_all("div", attrs={"class": "realtime_status"})
-    w_time = w_time = data.find_all("div", attrs={"data-role": "button"})[0].string
-    w_time_int = int(w_time.split("分")[0])
-    w_time_str = str(w_time_int)
-    nowtime = data.find_all("li", attrs={"data-role": "list-divider"})[0].string
-    n_time = (nowtime.split(">|<")[0])
-    st.write(n_time)
-    st.write(w_time_str+"分")
+    time_extra_usj2()
+
   if st.checkbox("ミニオン・ハチャメチャ・ライド"):
     url = "https://usjinfo.com/wait/sp/attrWait.php?attr_id=71"
-    http = urllib3.PoolManager()
-    response = http.request("GET",url)
-    data = BeautifulSoup(response.data, "lxml")
-    data.find_all("div", attrs={"class": "realtime_status"})
-    w_time = w_time = data.find_all("div", attrs={"data-role": "button"})[0].string
-    w_time_int = int(w_time.split("分")[0])
-    w_time_str = str(w_time_int)
-    nowtime = data.find_all("li", attrs={"data-role": "list-divider"})[0].string
-    n_time = (nowtime.split(">|<")[0])
-    st.write(n_time)
-    st.write(w_time_str+"分")
+    time_extra_usj2()
+
   if st.checkbox("ハリーポッター・アンド・ザ・フォービドゥン・ジャーニー™"):
     url = "https://usjinfo.com/wait/sp/attrWait.php?attr_id=30"
-    http = urllib3.PoolManager()
-    response = http.request("GET",url)
-    data = BeautifulSoup(response.data, "lxml")
-    data.find_all("div", attrs={"class": "realtime_status"})
-    w_time = w_time = data.find_all("div", attrs={"data-role": "button"})[0].string
-    w_time_int = int(w_time.split("分")[0])
-    w_time_str = str(w_time_int)
-    nowtime = data.find_all("li", attrs={"data-role": "list-divider"})[0].string
-    n_time = (nowtime.split(">|<")[0])
-    st.write(n_time)
-    st.write(w_time_str+"分")
+    time_extra_usj2()
+
   if st.checkbox("ヨッシー・アドベンチャー"):
     url = "https://usjinfo.com/wait/sp/attrWait.php?attr_id=28685"
-    http = urllib3.PoolManager()
-    response = http.request("GET",url)
-    data = BeautifulSoup(response.data, "lxml")
-    data.find_all("div", attrs={"class": "realtime_status"})
-    w_time = w_time = data.find_all("div", attrs={"data-role": "button"})[0].string
-    w_time_int = int(w_time.split("分")[0])
-    w_time_str = str(w_time_int)
-    nowtime = data.find_all("li", attrs={"data-role": "list-divider"})[0].string
-    n_time = (nowtime.split(">|<")[0])
-    st.write(n_time)
-    st.write(w_time_str+"分")
+    time_extra_usj2()
+
   if st.checkbox("ジョーズ(R)"):
     url = "https://usjinfo.com/wait/sp/attrWait.php?attr_id=1"
-    http = urllib3.PoolManager()
-    response = http.request("GET",url)
-    data = BeautifulSoup(response.data, "lxml")
-    data.find_all("div", attrs={"class": "realtime_status"})
-    w_time = w_time = data.find_all("div", attrs={"data-role": "button"})[0].string
-    w_time_int = int(w_time.split("分")[0])
-    w_time_str = str(w_time_int)
-    nowtime = data.find_all("li", attrs={"data-role": "list-divider"})[0].string
-    n_time = (nowtime.split(">|<")[0])
-    st.write(n_time)
-    st.write(w_time_str+"分")
+    time_extra_usj2()
+
   if st.checkbox("フライト・オブ・ザ・ヒッポグリフ™"):
     url = "https://usjinfo.com/wait/sp/attrWait.php?attr_id=29"
-    http = urllib3.PoolManager()
-    response = http.request("GET",url)
-    data = BeautifulSoup(response.data, "lxml")
-    data.find_all("div", attrs={"class": "realtime_status"})
-    w_time = w_time = data.find_all("div", attrs={"data-role": "button"})[0].string
-    w_time_int = int(w_time.split("分")[0])
-    w_time_str = str(w_time_int)
-    nowtime = data.find_all("li", attrs={"data-role": "list-divider"})[0].string
-    n_time = (nowtime.split(">|<")[0])
-    st.write(n_time)
-    st.write(w_time_str+"分")
+    time_extra_usj2()
+
   if st.checkbox("エルモのゴーゴー・スケートボード"):
     url = "https://usjinfo.com/wait/sp/attrWait.php?attr_id=44"
-    http = urllib3.PoolManager()
-    response = http.request("GET",url)
-    data = BeautifulSoup(response.data, "lxml")
-    data.find_all("div", attrs={"class": "realtime_status"})
-    w_time = w_time = data.find_all("div", attrs={"data-role": "button"})[0].string
-    w_time_int = int(w_time.split("分")[0])
-    w_time_str = str(w_time_int)
-    nowtime = data.find_all("li", attrs={"data-role": "list-divider"})[0].string
-    n_time = (nowtime.split(">|<")[0])
-    st.write(n_time)
-    st.write(w_time_str+"分")
+    time_extra_usj2()
+
   if st.checkbox("モッピーのバルーン・トリップ"):
     url = "https://usjinfo.com/wait/sp/attrWait.php?attr_id=45"
-    http = urllib3.PoolManager()
-    response = http.request("GET",url)
-    data = BeautifulSoup(response.data, "lxml")
-    data.find_all("div", attrs={"class": "realtime_status"})
-    w_time = w_time = data.find_all("div", attrs={"data-role": "button"})[0].string
-    w_time_int = int(w_time.split("分")[0])
-    w_time_str = str(w_time_int)
-    nowtime = data.find_all("li", attrs={"data-role": "list-divider"})[0].string
-    n_time = (nowtime.split(">|<")[0])
-    st.write(n_time)
-    st.write(w_time_str+"分")
+    time_extra_usj2()
